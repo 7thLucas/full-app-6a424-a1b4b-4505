@@ -1,0 +1,13 @@
+node_modules
+.git
+.docker
+.skaffold
+skaffold.yaml
+k8s
+_doc
+.tmp
+dist
+build
+coverage
+DESIGN.md
+PRODUCT.md
