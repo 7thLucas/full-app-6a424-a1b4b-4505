@@ -3,6 +3,11 @@ import { readdir } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 import { Router } from "express";
 import { createLogger } from "~/lib/logger";
+import productRoutes from "~/catalog/api/routes/product.routes";
+import rfqRoutes from "~/rfq/api/routes/rfq.routes";
+import chatRoutes from "~/chat/api/routes/chat.routes";
+import documentRoutes from "~/documents/api/routes/document.routes";
+import adminRoutes from "~/admin/api/routes/admin.routes";
 
 type RouteModule = {
   default?: ReturnType<typeof Router>;
@@ -61,5 +66,12 @@ async function registerModuleRoutes(): Promise<void> {
 }
 
 await registerModuleRoutes();
+
+// ── B2B Platform Routes ────────────────────────────────────────────────
+router.use("/products", productRoutes);
+router.use("/rfqs", rfqRoutes);
+router.use("/chat", chatRoutes);
+router.use("/rfqs", documentRoutes);
+router.use("/admin", adminRoutes);
 
 export default router;

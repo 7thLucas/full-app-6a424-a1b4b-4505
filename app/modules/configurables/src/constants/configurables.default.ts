@@ -64,67 +64,88 @@ export type TDefaultConfigurableData = {
   logoUrl: string;
   brandColor: TBrandColor;
   font: TFont;
-  // Mirror new schema fields here. Example:
-  //   maxItemsPerPage?: number;
-  //   enableNotifications?: boolean;
-  //   featuredCategories?: string[];
+  appTagline: string;
+  appDescription: string;
+  contactEmail: string;
+  catalogItemsPerPage: number;
+  rfqItemsPerPage: number;
+  enableBuyerRegistration: boolean;
+  enableNegotiationChat: boolean;
+  currencyCode: string;
+  defaultIncoterm: string;
+  footerText: string;
+  heroHeading: string;
+  heroSubheading: string;
+  catalogHeading: string;
+  catalogSubheading: string;
 };
 
 export const defaultConfigurablesData: TDefaultConfigurableData = {
-  appName: "My App",
+  appName: "FurniTrade Portal",
   logoUrl: "",
   brandColor: {
     // Base
-    background:        "#ffffff",
-    foreground:        "#09090b",
+    background:        "#0F172A",
+    foreground:        "#F1F5F9",
     // Card
-    card:              "#ffffff",
-    cardForeground:    "#09090b",
+    card:              "#1E293B",
+    cardForeground:    "#F1F5F9",
     // Popover
-    popover:           "#ffffff",
-    popoverForeground: "#09090b",
+    popover:           "#1E293B",
+    popoverForeground: "#F1F5F9",
     // Primary
-    primary:           "#2563eb",
-    primaryForeground: "#ffffff",
+    primary:           "#0F172A",
+    primaryForeground: "#F8FAFC",
     // Secondary
-    secondary:           "#f4f4f5",
-    secondaryForeground: "#18181b",
+    secondary:           "#1E293B",
+    secondaryForeground: "#94A3B8",
     // Muted
-    muted:           "#f4f4f5",
-    mutedForeground: "#71717a",
+    muted:           "#1E293B",
+    mutedForeground: "#64748B",
     // Accent
-    accent:           "#f4f4f5",
-    accentForeground: "#18181b",
+    accent:           "#D97706",
+    accentForeground: "#FFFFFF",
     // Destructive
-    destructive:           "#ef4444",
-    destructiveForeground: "#fafafa",
+    destructive:           "#DC2626",
+    destructiveForeground: "#FFFFFF",
     // Border / Input / Ring
-    border: "#e4e4e7",
-    input:  "#e4e4e7",
-    ring:   "#2563eb",
+    border: "#334155",
+    input:  "#334155",
+    ring:   "#D97706",
     // Charts
-    chart1: "#f97316",
-    chart2: "#0d9488",
-    chart3: "#1e3a5f",
-    chart4: "#d4a017",
-    chart5: "#ea580c",
+    chart1: "#D97706",
+    chart2: "#3B82F6",
+    chart3: "#10B981",
+    chart4: "#8B5CF6",
+    chart5: "#F59E0B",
     // Navbar
-    navbarBackground: "#ffffff",
+    navbarBackground: "#0F172A",
     // Sidebar
-    sidebarBackground:        "#fafafa",
-    sidebarForeground:        "#3f3f46",
-    sidebarPrimary:           "#2563eb",
-    sidebarPrimaryForeground: "#ffffff",
-    sidebarAccent:            "#f4f4f5",
-    sidebarAccentForeground:  "#18181b",
-    sidebarBorder:            "#e4e4e7",
-    sidebarRing:              "#2563eb",
+    sidebarBackground:        "#0C1525",
+    sidebarForeground:        "#94A3B8",
+    sidebarPrimary:           "#D97706",
+    sidebarPrimaryForeground: "#FFFFFF",
+    sidebarAccent:            "#1E293B",
+    sidebarAccentForeground:  "#F1F5F9",
+    sidebarBorder:            "#1E293B",
+    sidebarRing:              "#D97706",
   },
   font: {
-    headingFont: "Plus Jakarta Sans",
+    headingFont: "Inter",
     textFont: "Inter",
   },
-  // ─────────────────────────────────────────────────────────────────────
-  // Add new field defaults here. See RULES.md §5 for per-type shape.
-  // ─────────────────────────────────────────────────────────────────────
+  appTagline: "Centralized Quoting Platform for International Furniture Trade",
+  appDescription: "Connect with verified furniture manufacturers and exporters. Submit RFQs, negotiate pricing, and manage your international procurement in one place.",
+  contactEmail: "trade@furnitrade.com",
+  catalogItemsPerPage: 24,
+  rfqItemsPerPage: 20,
+  enableBuyerRegistration: true,
+  enableNegotiationChat: true,
+  currencyCode: "USD",
+  defaultIncoterm: "FOB",
+  footerText: "FurniTrade Portal — International Furniture Trade Platform. All rights reserved.",
+  heroHeading: "Source Quality Furniture, Globally",
+  heroSubheading: "Access verified manufacturers, submit RFQs, and manage your international procurement with confidence.",
+  catalogHeading: "Product Catalog",
+  catalogSubheading: "Browse our curated selection of furniture from verified manufacturers. Sign in as a verified buyer to view pricing and submit RFQs.",
 };
