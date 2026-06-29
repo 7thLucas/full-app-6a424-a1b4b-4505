@@ -1,0 +1,132 @@
+<section class="w-full h-full overflow-auto bg-white">
+  <div class="flex flex-col h-full p-10">
+
+    <!-- Header -->
+    <div class="mb-5">
+      <h2 class="text-3xl font-bold mb-1"
+          style="color: {{config.brandColor.primary}}; font-family: {{config.font.headingFont}};">
+        Platform Capabilities
+      </h2>
+      <p class="text-sm" style="color: #6B7280; font-family: {{config.font.textFont}};">
+        Role-aware features across the full order lifecycle
+      </p>
+    </div>
+
+    <!-- Persona chips -->
+    <div class="flex gap-3 mb-6">
+      <span class="px-4 py-1.5 rounded-full text-xs font-semibold"
+            style="background-color: {{config.brandColor.primary}}; color: #ffffff; font-family: {{config.font.textFont}};">
+        Verified Buyer
+      </span>
+      <span class="px-4 py-1.5 rounded-full text-xs font-semibold border"
+            style="color: {{config.brandColor.secondary}}; border-color: {{config.brandColor.secondary}}; font-family: {{config.font.textFont}};">
+        Sales / Admin
+      </span>
+      <span class="px-4 py-1.5 rounded-full text-xs font-semibold border"
+            style="color: #6B7280; border-color: #D1D5DB; font-family: {{config.font.textFont}};">
+        Guest
+      </span>
+    </div>
+
+    <!-- Feature cards grid -->
+    <div class="grid grid-cols-4 gap-4 flex-1">
+
+      <div class="rounded-xl p-5 flex flex-col"
+           style="background-color: #EFF6FF; border-left: 4px solid {{config.brandColor.primary}};">
+        <div class="text-2xl mb-3">📦</div>
+        <h3 class="text-sm font-bold mb-1"
+            style="color: {{config.brandColor.primary}}; font-family: {{config.font.headingFont}};">
+          Gated Catalog
+        </h3>
+        <p class="text-xs leading-relaxed" style="color: #4B5563; font-family: {{config.font.textFont}};">
+          SKU specs public; pricing gated to verified buyers. WebP-optimized images via Cloudflare R2.
+        </p>
+      </div>
+
+      <div class="rounded-xl p-5 flex flex-col"
+           style="background-color: #EFF6FF; border-left: 4px solid {{config.brandColor.secondary}};">
+        <div class="text-2xl mb-3">🛒</div>
+        <h3 class="text-sm font-bold mb-1"
+            style="color: {{config.brandColor.primary}}; font-family: {{config.font.headingFont}};">
+          Inquiry Cart &amp; RFQ
+        </h3>
+        <p class="text-xs leading-relaxed" style="color: #4B5563; font-family: {{config.font.textFont}};">
+          Non-transactional cart with API-level MOQ validation. Converts to Draft Order for Admin review.
+        </p>
+      </div>
+
+      <div class="rounded-xl p-5 flex flex-col"
+           style="background-color: #FFFBEB; border-left: 4px solid {{config.brandColor.accent}};">
+        <div class="text-2xl mb-3">🔄</div>
+        <h3 class="text-sm font-bold mb-1"
+            style="color: {{config.brandColor.primary}}; font-family: {{config.font.headingFont}};">
+          9-State Order Engine
+        </h3>
+        <p class="text-xs leading-relaxed" style="color: #4B5563; font-family: {{config.font.textFont}};">
+          DRAFT → SUBMITTED → QUOTED → ACCEPTED → PAYMENT_VERIFIED → IN_PRODUCTION → SHIPPED → COMPLETED
+        </p>
+      </div>
+
+      <div class="rounded-xl p-5 flex flex-col"
+           style="background-color: #EFF6FF; border-left: 4px solid {{config.brandColor.primary}};">
+        <div class="text-2xl mb-3">💬</div>
+        <h3 class="text-sm font-bold mb-1"
+            style="color: {{config.brandColor.primary}}; font-family: {{config.font.headingFont}};">
+          Contextual Chat
+        </h3>
+        <p class="text-xs leading-relaxed" style="color: #4B5563; font-family: {{config.font.textFont}};">
+          Async messaging tied to each RFQ ID. Full audit trail of business communications per order.
+        </p>
+      </div>
+
+      <div class="rounded-xl p-5 flex flex-col"
+           style="background-color: #F0FDF4; border-left: 4px solid #16A34A;">
+        <div class="text-2xl mb-3">📄</div>
+        <h3 class="text-sm font-bold mb-1"
+            style="color: {{config.brandColor.primary}}; font-family: {{config.font.headingFont}};">
+          Document Hub
+        </h3>
+        <p class="text-xs leading-relaxed" style="color: #4B5563; font-family: {{config.font.textFont}};">
+          Auto-generated Proforma Invoice. Protected R2 storage for B/L, Packing List, Commercial Invoice.
+        </p>
+      </div>
+
+      <div class="rounded-xl p-5 flex flex-col"
+           style="background-color: #EFF6FF; border-left: 4px solid {{config.brandColor.secondary}};">
+        <div class="text-2xl mb-3">🔔</div>
+        <h3 class="text-sm font-bold mb-1"
+            style="color: {{config.brandColor.primary}}; font-family: {{config.font.headingFont}};">
+          Event Notifications
+        </h3>
+        <p class="text-xs leading-relaxed" style="color: #4B5563; font-family: {{config.font.textFont}};">
+          Transactional email alerts to buyer and admin on every state change and incoming message.
+        </p>
+      </div>
+
+      <div class="rounded-xl p-5 flex flex-col"
+           style="background-color: #FFFBEB; border-left: 4px solid {{config.brandColor.accent}};">
+        <div class="text-2xl mb-3">⚙️</div>
+        <h3 class="text-sm font-bold mb-1"
+            style="color: {{config.brandColor.primary}}; font-family: {{config.font.headingFont}};">
+          Admin Operations
+        </h3>
+        <p class="text-xs leading-relaxed" style="color: #4B5563; font-family: {{config.font.textFont}};">
+          Account approval, freight calculation (sea/air), invoice issuance, logistics state management.
+        </p>
+      </div>
+
+      <div class="rounded-xl p-5 flex flex-col"
+           style="background-color: #EFF6FF; border-left: 4px solid {{config.brandColor.primary}};">
+        <div class="text-2xl mb-3">♻️</div>
+        <h3 class="text-sm font-bold mb-1"
+            style="color: {{config.brandColor.primary}}; font-family: {{config.font.headingFont}};">
+          Re-Order
+        </h3>
+        <p class="text-xs leading-relaxed" style="color: #4B5563; font-family: {{config.font.textFont}};">
+          Completed orders duplicatable to a new Draft Inquiry in one action — fast repeat purchasing.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
