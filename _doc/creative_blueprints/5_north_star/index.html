@@ -1,0 +1,151 @@
+<style>
+  .mode-landscape .sl-layout { flex-direction: row; }
+  .mode-portrait .sl-layout { flex-direction: column; }
+  .mode-landscape .sl-left { width: 44%; }
+  .mode-portrait .sl-left { width: 100%; }
+  .mode-landscape .sl-right { width: 56%; }
+  .mode-portrait .sl-right { width: 100%; }
+</style>
+<section class="w-full h-full overflow-auto bg-white">
+  <div class="flex flex-col h-full p-10">
+
+    <!-- Badge -->
+    <div class="mb-4">
+      <span class="text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded"
+            style="background-color: #FEF3C7; color: #92400E; font-family: {{config.font.textFont}};">
+        Projected Impact — based on your inputs
+      </span>
+    </div>
+
+    <!-- Main layout -->
+    <div class="sl-layout flex gap-8 flex-1">
+
+      <!-- Left: Definitions -->
+      <div class="sl-left flex flex-col">
+        <h2 class="text-3xl font-bold mb-1"
+            style="color: {{config.brandColor.primary}}; font-family: {{config.font.headingFont}};">
+          North Star Metric
+        </h2>
+        <p class="text-sm mb-5" style="color: #6B7280; font-family: {{config.font.textFont}};">
+          <strong>Weekly Verified Operations (WVO)</strong> — the number that proves the portal is doing real business work, not just serving pages.
+        </p>
+
+        <div class="space-y-3 flex-1">
+          <div class="flex items-start gap-3 p-4 rounded-xl"
+               style="background-color: #EFF6FF;">
+            <span class="text-xl flex-shrink-0">📝</span>
+            <div>
+              <p class="text-sm font-bold" style="color: {{config.brandColor.primary}}; font-family: {{config.font.headingFont}};">
+                RFQ Submitted
+              </p>
+              <p class="text-xs leading-relaxed" style="color: #4B5563; font-family: {{config.font.textFont}};">
+                Buyer completes and submits an Inquiry Cart as a formal RFQ — cart state changes from DRAFT_INQUIRY to SUBMITTED
+              </p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 p-4 rounded-xl"
+               style="background-color: #FFFBEB;">
+            <span class="text-xl flex-shrink-0">📋</span>
+            <div>
+              <p class="text-sm font-bold" style="color: {{config.brandColor.primary}}; font-family: {{config.font.headingFont}};">
+                Proforma Invoice Issued
+              </p>
+              <p class="text-xs leading-relaxed" style="color: #4B5563; font-family: {{config.font.textFont}};">
+                Admin publishes a Proforma Invoice and order transitions to QUOTED — buyer receives email notification
+              </p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 p-4 rounded-xl"
+               style="background-color: #F0FDF4;">
+            <span class="text-xl flex-shrink-0">✅</span>
+            <div>
+              <p class="text-sm font-bold" style="color: {{config.brandColor.primary}}; font-family: {{config.font.headingFont}};">
+                Order Completed
+              </p>
+              <p class="text-xs leading-relaxed" style="color: #4B5563; font-family: {{config.font.textFont}};">
+                Full cycle from RFQ to shipment delivered — order reaches COMPLETED state and archives to History
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: WVO Formula + Value -->
+      <div class="sl-right flex flex-col gap-4">
+
+        <!-- Formula box -->
+        <div class="rounded-xl p-5"
+             style="background-color: {{config.brandColor.primary}};">
+          <p class="text-xs font-semibold uppercase tracking-widest mb-3"
+             style="color: {{config.brandColor.accent}}; font-family: {{config.font.textFont}};">
+            Weekly Operation Formula
+          </p>
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-3 py-1.5 rounded-lg text-xs font-semibold"
+                  style="background-color: #374151; color: #FCD34D; font-family: {{config.font.textFont}};">
+              Assumption — adjust this
+            </span>
+            <span class="text-sm font-bold"
+                  style="color: #ffffff; font-family: {{config.font.headingFont}};">
+              Active Buyers / Week
+            </span>
+            <span class="text-sm font-bold" style="color: #93C5FD; font-family: {{config.font.textFont}};">×</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-semibold"
+                  style="background-color: #374151; color: #FCD34D; font-family: {{config.font.textFont}};">
+              Assumption — adjust this
+            </span>
+            <span class="text-sm font-bold"
+                  style="color: #ffffff; font-family: {{config.font.headingFont}};">
+              RFQs per Buyer
+            </span>
+            <span class="text-sm font-bold" style="color: #93C5FD; font-family: {{config.font.textFont}};">=</span>
+            <span class="text-2xl font-bold"
+                  style="color: {{config.brandColor.accent}}; font-family: {{config.font.headingFont}};">
+              WVO / week
+            </span>
+          </div>
+        </div>
+
+        <!-- Value derivation -->
+        <div class="rounded-xl p-5 flex-1"
+             style="background-color: #F9FAFB; border: 1px solid #E5E7EB;">
+          <p class="text-xs font-semibold uppercase tracking-widest mb-3"
+             style="color: #6B7280; font-family: {{config.font.textFont}};">
+            Value per Operation
+          </p>
+          <div class="space-y-3 mb-4">
+            <div class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0"
+                    style="background-color: {{config.brandColor.secondary}};"></span>
+              <p class="text-xs leading-relaxed" style="color: #4B5563; font-family: {{config.font.textFont}};">
+                <span class="font-semibold">Time saved:</span> Each RFQ cycle replaces ≈60–120 min of unstructured back-and-forth negotiation across messaging apps
+              </p>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0"
+                    style="background-color: {{config.brandColor.secondary}};"></span>
+              <p class="text-xs leading-relaxed" style="color: #4B5563; font-family: {{config.font.textFont}};">
+                <span class="font-semibold">Risk avoided:</span> Legally unenforceable chat agreements replaced with auditable digital binding contracts
+              </p>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0"
+                    style="background-color: {{config.brandColor.secondary}};"></span>
+              <p class="text-xs leading-relaxed" style="color: #4B5563; font-family: {{config.font.textFont}};">
+                <span class="font-semibold">Error reduction:</span> API-level MOQ enforcement eliminates costly order revision cycles
+              </p>
+            </div>
+          </div>
+          <div class="rounded-lg p-3 text-center"
+               style="background-color: {{config.brandColor.accent}};">
+            <p class="text-xs font-bold"
+               style="color: #ffffff; font-family: {{config.font.textFont}};">
+              Fill in your active buyer count + avg. RFQs per week to project weekly &amp; annual value
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
