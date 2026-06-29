@@ -1,0 +1,96 @@
+<style>
+  .mode-landscape .sl-layout { flex-direction: row; }
+  .mode-portrait .sl-layout { flex-direction: column; }
+  .mode-landscape .sl-col { width: 50%; }
+  .mode-portrait .sl-col { width: 100%; }
+</style>
+<section class="w-full h-full overflow-auto bg-white">
+  <div class="sl-layout flex w-full h-full">
+
+    <!-- Problem Column -->
+    <div class="sl-col flex flex-col justify-center p-12" style="background-color: #F9FAFB;">
+      <div class="mb-5">
+        <span class="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded"
+              style="background-color: #FEE2E2; color: #B91C1C; font-family: {{config.font.textFont}};">
+          The Problem
+        </span>
+      </div>
+      <h2 class="text-3xl font-bold mb-5"
+          style="color: {{config.brandColor.primary}}; font-family: {{config.font.headingFont}};">
+        Negotiations Lost in Messaging Apps
+      </h2>
+      <ul class="space-y-4">
+        <li class="flex items-start gap-3">
+          <span class="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style="background-color: #EF4444;"></span>
+          <span class="text-sm leading-relaxed" style="color: #374151; font-family: {{config.font.textFont}};">
+            Price negotiations scattered across WhatsApp, email, and external messaging — no single source of truth
+          </span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style="background-color: #EF4444;"></span>
+          <span class="text-sm leading-relaxed" style="color: #374151; font-family: {{config.font.textFont}};">
+            Zero legal audit trail — no enforceable record of agreed pricing or order terms
+          </span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style="background-color: #EF4444;"></span>
+          <span class="text-sm leading-relaxed" style="color: #374151; font-family: {{config.font.textFont}};">
+            Documents — invoices, B/L, packing lists — shared ad hoc with no access control or version authority
+          </span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style="background-color: #EF4444;"></span>
+          <span class="text-sm leading-relaxed" style="color: #374151; font-family: {{config.font.textFont}};">
+            Manual MOQ enforcement prone to disputes and costly order revision cycles
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Solution Column -->
+    <div class="sl-col flex flex-col justify-center p-12"
+         style="background-color: {{config.brandColor.primary}};">
+      <div class="mb-5">
+        <span class="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded"
+              style="background-color: {{config.brandColor.accent}}; color: #ffffff; font-family: {{config.font.textFont}};">
+          The Solution
+        </span>
+      </div>
+      <h2 class="text-3xl font-bold mb-5"
+          style="color: #ffffff; font-family: {{config.font.headingFont}};">
+        One State-Driven, Auditable Portal
+      </h2>
+      <ul class="space-y-4">
+        <li class="flex items-start gap-3">
+          <span class="mt-1.5 w-2 h-2 rounded-full flex-shrink-0"
+                style="background-color: {{config.brandColor.accent}};"></span>
+          <span class="text-sm leading-relaxed" style="color: #D1D5DB; font-family: {{config.font.textFont}};">
+            Every order follows a strict 9-state machine — UI actions enforced by backend, never by convention
+          </span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="mt-1.5 w-2 h-2 rounded-full flex-shrink-0"
+                style="background-color: {{config.brandColor.accent}};"></span>
+          <span class="text-sm leading-relaxed" style="color: #D1D5DB; font-family: {{config.font.textFont}};">
+            Contextual negotiation chat tied by RFQ ID — full business communication audit trail per order
+          </span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="mt-1.5 w-2 h-2 rounded-full flex-shrink-0"
+                style="background-color: {{config.brandColor.accent}};"></span>
+          <span class="text-sm leading-relaxed" style="color: #D1D5DB; font-family: {{config.font.textFont}};">
+            Proforma Invoice, B/L, and Packing List in protected Cloudflare R2 — accessed only by matched buyer at the correct state
+          </span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="mt-1.5 w-2 h-2 rounded-full flex-shrink-0"
+                style="background-color: {{config.brandColor.accent}};"></span>
+          <span class="text-sm leading-relaxed" style="color: #D1D5DB; font-family: {{config.font.textFont}};">
+            MOQ validated at API level — enforced on every submission, not just suggested in the UI
+          </span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
