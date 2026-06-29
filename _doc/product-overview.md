@@ -1,61 +1,84 @@
-Product Requirements Document (PRD)
+# Product Overview: B2B Portal & RFQ Engine
 
-Project Name: B2B Portal & RFQ Engine
+## Identity
+**Name:** B2B Portal & RFQ Engine
+**Tagline:** Centralized state-driven quoting platform for international furniture trade
+**Release:** Fase 1 — Core RFQ & Catalog
+**Domain:** B2B furniture manufacturing, international export trade
 
-Target Release: Fase 1 (Core RFQ & Catalog)
+## Vision
+Replace unstructured messaging-based negotiations (WhatsApp, email) with a legally auditable, centralized digital portal purpose-built for high-volume international furniture buyers. Every quote, every negotiation, every document lives in one state-controlled, fully traceable system.
 
-1. Executive Summary & Vision
+## Users & Roles
 
-Membangun portal B2B digital (Katalog & Sistem Manajemen RFQ) yang merampingkan proses penawaran harga (quoting) untuk pembeli furnitur internasional high-volume. Sistem ini menggantikan proses negosiasi tidak terstruktur melalui platform messaging eksternal menjadi sebuah platform state-driven yang tersentralisasi, dapat diaudit secara hukum, dan dikontrol penuh mutasi datanya.
+### Guest (Unverified Visitor)
+- Public access only
+- Can view: product specifications, dimensions, materials, CBM ratio, MOQ
+- Cannot view: pricing, inventory, or any transactional data
+- Path to access: apply for Verified Buyer status
 
-2. Target Audience & Roles
+### Verified Buyer (B2B Purchasing Manager)
+- Approved B2B client accounts
+- Can view: full catalog with pricing, Proforma Invoices
+- Can do: create Inquiry/RFQ forms, negotiate within portal, download shipping/legal documents
+- Receives: email notifications on state changes and new Admin messages
 
-Guest (Unverified User): Pengunjung publik. Hanya dapat melihat spesifikasi teknis, dimensi, dan material produk tanpa akses ke visibilitas harga.
+### Sales/Admin (Internal Operations Team)
+- Internal staff accounts
+- Can do: approve/reject buyer accounts, calculate sea/air freight costs, issue Proforma Invoices, update order logistics state throughout fulfillment
+- Full access to all order data and document management
 
-Verified Buyer: Klien B2B (Manajer Purchasing) yang telah melalui tahap approval. Dapat melihat harga (jika ada), membuat form Inquiry/RFQ, melakukan negosiasi di dalam portal, dan mengunduh dokumen pengiriman.
+## Core Features
 
-Sales/Admin: Tim operasional internal. Bertugas menyetujui akun klien, menghitung ongkos kirim kargo laut/udara, menerbitkan Proforma Invoice, dan mengubah state logistik dari pesanan.
+### 1. Gated Catalog & Product Management
+- Digital catalog displaying SKUs with: dimensions, material, finishing, CBM ratio (Cubic Meter), MOQ
+- Price visibility gated — Guests see specs only; pricing visible to Verified Buyers
+- Image optimization pipeline: backend intercepts all uploads, compresses and converts to WebP format before distribution via Cloudflare R2
 
-3. Core Features & Business Logic
+### 2. Inquiry Cart & RFQ Generation
+- Non-transactional cart system: Buyers add items and input target purchase quantities
+- MOQ validation enforced at API level (not just frontend)
+- "Submit to Quote" action: cart converts to Draft Order entity for Admin review
+- No payment gateway integration — pure B2B quoting and contract workflow
+- Special Request Notes field for buyer context per inquiry
 
-3.1 Gated Catalog & Product Management
+### 3. B2B Communication Layer
+- Contextual negotiation chat: asynchronous messaging tied to specific RFQ Unique ID
+- Each chat thread is strictly scoped to one order — full business communication audit trail
+- Event-driven email notifications to both Buyer and Admin on: state changes, new messages, document availability
 
-Katalog Digital: Menampilkan SKU beserta dimensi, material, finishing, rasio CBM (Cubic Meter), dan MOQ.
+### 4. Document Hub
+- Auto-generated Proforma Invoice PDF from Admin-entered RFQ data
+- Admin uploads: Commercial Invoice, Packing List, Bill of Lading to protected Cloudflare R2 bucket
+- Document access enforced: only authenticated buyers with matching order ID may download
+- Documents unlocked by order state — B/L and Packing List accessible only after SHIPPED state
 
-Image Optimization: Seluruh unggahan foto produk wajib di-intercept oleh backend untuk dikompresi dan dikonversi ke format WebP sebelum didistribusikan melalui Cloudflare R2.
+## Order State Machine
 
-3.2 Inquiry Cart & RFQ Generation
+The entire system is state-first. UI actions (buttons, forms) are only rendered when permitted by the current state.
 
-Sistem Keranjang Non-Transaksional: Buyer menambahkan barang dan memasukkan target kuantitas pembelian. Sistem melakukan validasi aturan MOQ di level API.
+| State | Buyer UX | Allowed Actions |
+|-------|----------|-----------------|
+| DRAFT_INQUIRY | Active cart: item list, qty inputs, Special Request Notes field | Edit Qty, Remove Item, Submit RFQ |
+| SUBMITTED | Read-only. Progress bar: "Waiting for Admin to Review" | Cancel Inquiry |
+| QUOTED | Email notification received. Accept Quotation / Request Revision buttons. Proforma Invoice PDF download link. Contextual Chat opened. | Accept, Reject, Chat with Admin |
+| ACCEPTED | Locked as Binding Contract. Payment instructions (T/T bank account or L/C terms) displayed prominently above invoice. | Await Admin payment verification |
+| PAYMENT_VERIFIED | Progress bar advances. Estimated Production Start date displayed. | View Status |
+| IN_PRODUCTION | Weekly production status or percentage shown (or static "On Going" if not updated). | View Status, Chat with Admin |
+| READY_TO_SHIP | Alert: goods queued at port / logistics warehouse. | View Status |
+| SHIPPED | Document section unlocked. Buyer downloads Bill of Lading and Packing List from R2. | Download Legal Documents |
+| COMPLETED | Order archived in "History" tab. Full read-only archive view. | Re-order (duplicates items to new DRAFT_INQUIRY) |
 
-Submit to Quote: Keranjang tidak berujung pada Payment Gateway, melainkan dikonversi menjadi entitas Draft Order untuk di- review oleh Admin.
+## Architecture & Engineering Constraints
 
-3.3 B2B Communication Layer
+- **Codebase pattern:** Feature-Based Packaging — directories by business domain (`/src/features/catalog`, `/src/features/rfq`, `/src/features/documents`). No global layer-driven architecture.
+- **Infrastructure:** Self-hosted VPS (Ubuntu/Arch Linux), Docker container orchestration, Cloudflare R2 for all asset and legal document storage (egress-efficient)
+- **Financial precision:** All monetary values (subtotal, shipping cost) stored as Decimal type — not Float — in database schema to prevent fractional computation errors
+- **Authentication:** Role-based access control (Guest / Verified Buyer / Sales/Admin). Admin verifies and approves buyer accounts manually.
+- **Notifications:** Transactional email provider for all event-driven notifications (state changes, new messages)
 
-Contextual Negotiation Chat: Sistem pesan internal (asynchronous) yang secara relasional terikat dengan Unique ID dari RFQ. Obrolan sangat spesifik untuk membahas pesanan tersebut, menjamin audit trail komunikasi bisnis.
-
-Event-Driven Notification: Menggunakan penyedia layanan email transaksional untuk mengirim push notification ke Buyer dan Admin pada setiap perubahan state krusial atau pesan masuk baru.
-
-3.4 Document Hub
-
-Auto-Generated PDF: Sistem menghasilkan Proforma Invoice secara dinamis dari data RFQ yang dimasukkan Admin.
-
-Secure Document Storage: Admin mengunggah dokumen Commercial Invoice, Packing List, dan Bill of Lading ke bucket R2 yang dilindungi. Dokumen ini hanya bisa diunduh oleh Buyer yang terautentikasi dan memiliki relasi dengan ID pesanan terkait.
-
-4. State Machine UX Flow (Integrasi Backend & UI)
-
-Pendekatan State-First Development menuntut antarmuka (UI) untuk tunduk secara absolut pada state dari pesanan. UI tidak boleh menyediakan aksi (tombol/form) yang tidak diizinkan oleh state machine.
-
-Berikut adalah panduan transisi UX di pihak Buyer:
-
-Current StateUX State & Visibilitas UI (Buyer Side)Allowed Actions (Mutasi)DRAFT_INQUIRYKeranjang aktif. Menampilkan daftar item, input kuantitas, dan field "Special Request Notes".Edit Qty, Remove Item, Submit RFQ.SUBMITTEDState terkunci (Read-only). Pesanan pindah ke tab "Active Quotes". Terdapat progress bar visual (Status: Waiting for Admin to Review).Cancel Inquiry (Batal).QUOTEDNotifikasi Email masuk. Buka detail RFQ $\rightarrow$ UI menampilkan tombol besar "Accept Quotation" atau "Request Revision". Link download Proforma Invoice PDF muncul. Fitur Contextual Chat terbuka.Accept, Reject, Chat dengan Admin.ACCEPTEDStatus pesanan terkunci sebagai Binding Contract. UI memunculkan instruksi pembayaran manual (Nomor Rekening T/T atau instruksi L/C) secara prominent di atas invoice.(Menunggu Admin verifikasi pembayaran).PAYMENT_VERIFIEDUI progress bar bergerak maju. Menampilkan estimasi tanggal mulai produksi (Estimated Production Start).Lihat Status.IN_PRODUCTIONUI menampilkan persentase atau status produksi mingguan (opsional jika Admin rajin update, jika tidak, cukup statis "On Going").Lihat Status, Chat dengan Admin.READY_TO_SHIPUI menampilkan peringatan bahwa barang sedang antre di pelabuhan/gudang logistik.Lihat Status.SHIPPEDStatus berubah. Krusial: Section Dokumen Terkunci sekarang terbuka. Buyer bisa mengunduh Bill of Lading (B/L) dan Packing List dari R2.Download Legal Documents.COMPLETEDPesanan masuk ke tab "History". Keseluruhan UI menjadi read-only archive.Re-order (menduplikasi item ke DRAFT_INQUIRY baru).
-
-5. Engineering Constraints & Architecture
-
-Sistem enterprise ini harus dirancang dengan ketahanan struktural tingkat tinggi:
-
-Arsitektur Codebase: Wajib mengadopsi pola Feature-Based Packaging. Hindari arsitektur layer-driven tradisional (pemisahan controllers, models, views secara global). Direktori dipilah berdasarkan domain bisnis (misal: /src/features/catalog, /src/features/rfq, /src/features/documents).
-
-Infrastruktur & Penyimpanan: Implementasi mandiri menggunakan VPS (Ubuntu/Arch Linux) yang diorkestrasi melalui container Docker. Penyimpanan aset statis dan dokumen legal ditaruh di Cloudflare R2 untuk efisiensi transfer data keluar (egress).
-
-Presisi Komputasi Finansial: Seluruh entitas nilai uang (subtotal, shipping cost) di tingkat skema database menggunakan tipe Decimal (bukan Float) untuk mencegah inakurasi komputasi fraksional.
+## Brand & Tone
+- Enterprise-grade, professional, internationally oriented
+- Primary operating language: Bahasa Indonesia (internal ops), with English document outputs (Proforma Invoice, B/L, Packing List)
+- Trust signals: audit trail visibility, state-locked UI, legal document chain
+- Anti-pattern: no payment gateway, no consumer-facing UX patterns, no gamification
