@@ -7,52 +7,62 @@
   .mode-portrait .sl-img-col { width: 100%; height: 38%; }
 </style>
 <section class="w-full h-full overflow-auto bg-white">
-  <div class="sl-layout flex w-full h-full" bis_skin_checked="1">
+  <div class="sl-layout flex w-full h-full">
 
-    
-    <div class="sl-text-col flex flex-col justify-between p-12" bis_skin_checked="1">
-      <div bis_skin_checked="1">
-        <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold mb-8" style="background-color: #D97706; color: #ffffff; font-family: Inter;" bis_skin_checked="1">
+    <!-- Left: Text Column -->
+    <div class="sl-text-col flex flex-col justify-between p-12">
+      <div>
+        <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold mb-8"
+             style="background-color: {{config.brandColor.accent}}; color: #ffffff; font-family: {{config.font.textFont}};">
           B2B Enterprise Platform · Fase 1
         </div>
-        <h1 class="text-5xl font-bold leading-tight mb-4" style="color: #0F172A; font-family: Inter;">
-          B2B Portal &amp; RFQ Engine123</h1>
-        <div class="w-16 h-1 rounded mb-6" style="background-color: #D97706;" bis_skin_checked="1"></div>
-        <p class="text-lg leading-relaxed max-w-sm" style="color: #374151; font-family: Inter;">
-          Centralized state-driven quoting platform for international furniture trade
+        <h1 class="text-5xl font-bold leading-tight mb-4"
+            style="color: {{config.brandColor.primary}}; font-family: {{config.font.headingFont}};">
+          {{config.appName}}
+        </h1>
+        <div class="w-16 h-1 rounded mb-6" style="background-color: {{config.brandColor.accent}};"></div>
+        <p class="text-lg leading-relaxed max-w-sm"
+           style="color: #374151; font-family: {{config.font.textFont}};">
+          {{config.tagline}}
         </p>
-        <div class="mt-8 flex gap-6" bis_skin_checked="1">
-          <div bis_skin_checked="1">
-            <p class="text-2xl font-bold" style="color: #0F172A; font-family: Inter;">9</p>
-            <p class="text-xs" style="color: #6B7280; font-family: Inter;">Order States</p>
+        <div class="mt-8 flex gap-6">
+          <div>
+            <p class="text-2xl font-bold" style="color: {{config.brandColor.primary}}; font-family: {{config.font.headingFont}};">9</p>
+            <p class="text-xs" style="color: #6B7280; font-family: {{config.font.textFont}};">Order States</p>
           </div>
-          <div class="w-px" style="background-color: #E5E7EB;" bis_skin_checked="1"></div>
-          <div bis_skin_checked="1">
-            <p class="text-2xl font-bold" style="color: #0F172A; font-family: Inter;">3</p>
-            <p class="text-xs" style="color: #6B7280; font-family: Inter;">Roles</p>
+          <div class="w-px" style="background-color: #E5E7EB;"></div>
+          <div>
+            <p class="text-2xl font-bold" style="color: {{config.brandColor.primary}}; font-family: {{config.font.headingFont}};">3</p>
+            <p class="text-xs" style="color: #6B7280; font-family: {{config.font.textFont}};">Roles</p>
           </div>
-          <div class="w-px" style="background-color: #E5E7EB;" bis_skin_checked="1"></div>
-          <div bis_skin_checked="1">
-            <p class="text-2xl font-bold" style="color: #0F172A; font-family: Inter;">R2</p>
-            <p class="text-xs" style="color: #6B7280; font-family: Inter;">Cloudflare Storage</p>
+          <div class="w-px" style="background-color: #E5E7EB;"></div>
+          <div>
+            <p class="text-2xl font-bold" style="color: {{config.brandColor.primary}}; font-family: {{config.font.headingFont}};">R2</p>
+            <p class="text-xs" style="color: #6B7280; font-family: {{config.font.textFont}};">Cloudflare Storage</p>
           </div>
         </div>
       </div>
-      <div bis_skin_checked="1">
+      <div>
         <data-attribution />
       </div>
     </div>
 
-    
-    <div class="sl-img-col relative overflow-hidden" style="background-color: #0F172A;" bis_skin_checked="1">
-      <img src="https://api-stag.qb-deck.quantumbyte.ai/common/image-generation?prompt=premium%20B2B%20international%20furniture%20trade%20export%20digital%20portal%20dark%20navy%20blue%20professional%20abstract%20geometric" class="w-full h-full object-cover opacity-50" alt="B2B Portal visual">
-      <div class="absolute inset-0 flex flex-col justify-end p-10" bis_skin_checked="1">
-        <p class="text-xs font-semibold mb-2 uppercase tracking-widest" style="color: #D97706; font-family: Inter;">
+    <!-- Right: Visual Column -->
+    <div class="sl-img-col relative overflow-hidden"
+         style="background-color: {{config.brandColor.primary}};">
+      <img
+        src="https://api-stag.qb-deck.quantumbyte.ai/common/image-generation?prompt=premium%20B2B%20international%20furniture%20trade%20export%20digital%20portal%20dark%20navy%20blue%20professional%20abstract%20geometric"
+        class="w-full h-full object-cover opacity-50"
+        alt="B2B Portal visual" />
+      <div class="absolute inset-0 flex flex-col justify-end p-10">
+        <p class="text-xs font-semibold mb-2 uppercase tracking-widest"
+           style="color: {{config.brandColor.accent}}; font-family: {{config.font.textFont}};">
           Core RFQ &amp; Catalog
         </p>
-        <p class="text-base leading-relaxed" style="color: #ffffff; font-family: Inter;">
-          Replacing fragmented WhatsApp negotiations<br>
-          with a legally auditable, state-controlled<br>
+        <p class="text-base leading-relaxed"
+           style="color: #ffffff; font-family: {{config.font.textFont}};">
+          Replacing fragmented WhatsApp negotiations<br/>
+          with a legally auditable, state-controlled<br/>
           digital quoting system.
         </p>
       </div>
