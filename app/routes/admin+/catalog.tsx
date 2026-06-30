@@ -6,7 +6,7 @@ import { useProducts, useCategories } from "~/catalog/hooks/use-products";
 import { getUserFromRequest } from "~/modules/authentication/authentication.server";
 import { UserRole } from "~/modules/authentication/authentication.types";
 import { useConfigurables } from "~/modules/configurables";
-import { Package, Search, Plus, Edit, Eye, EyeOff } from "lucide-react";
+import { Package, Search, Plus, Eye, EyeOff } from "lucide-react";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const user = getUserFromRequest(request);
